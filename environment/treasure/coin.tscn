@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjcout23lvvfy"]
+
+[ext_resource type="PackedScene" uid="uid://bui4chrywxhar" path="res://assets/art/dungeon/coin.gltf" id="1_viu0j"]
+[ext_resource type="Script" path="res://environment/treasure/pickup trigger.gd" id="2_d4cs5"]
+[ext_resource type="AudioStream" uid="uid://2pt8spcqal00" path="res://assets/sound/sfx/Environment/coins_pickup_shake_01.ogg" id="3_0a8pq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0cxn0"]
+height = 0.2
+radius = 0.2
+
+[node name="coin" instance=ExtResource("1_viu0j")]
+script = ExtResource("2_d4cs5")
+item_type = "gold"
+item_value = 1
+sound_pickup = ExtResource("3_0a8pq")
+
+[node name="coin" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="Pickup Trigger" type="Area3D" parent="coin" index="0"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="coin/Pickup Trigger" index="0"]
+shape = SubResource("CylinderShape3D_0cxn0")
+
+[connection signal="body_entered" from="coin/Pickup Trigger" to="." method="_on_pickup_trigger_body_entered"]

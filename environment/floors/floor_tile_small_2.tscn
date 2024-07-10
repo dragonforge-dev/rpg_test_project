@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://qgwf1f48nrv2"]
+
+[ext_resource type="PackedScene" uid="uid://dkj1b77bgp6q7" path="res://assets/art/dungeon/floor_tile_small.gltf" id="1_bd4be"]
+[ext_resource type="PackedScene" uid="uid://bf2tvnqx2mj3l" path="res://environment/floors/walk_sound_tile.tscn" id="2_w2qsg"]
+
+[node name="floor_tile_small2" instance=ExtResource("1_bd4be")]
+
+[node name="floor_tile_small" parent="." index="0"]
+layers = 4
+
+[node name="floor_tile_small_col" parent="floor_tile_small" index="0"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="WalkSoundTile" parent="." index="1" instance=ExtResource("2_w2qsg")]

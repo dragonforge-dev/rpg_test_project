@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://ct520a3ngau6p"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_hh3rp"]
+[ext_resource type="PackedScene" uid="uid://j1xlag31bgw6" path="res://characters/knight.tscn" id="3_c073w"]
+[ext_resource type="PackedScene" uid="uid://bqlkkbbmj2jsj" path="res://characters/mage.tscn" id="3_ywdm2"]
+[ext_resource type="PackedScene" uid="uid://brddl2cuk0kty" path="res://utilities/test_tools_gui.tscn" id="4_2q8gk"]
+[ext_resource type="PackedScene" uid="uid://c4mw6lfs0uhbq" path="res://environment/rooms/dungeon_room_1.tscn" id="4_onb7s"]
+[ext_resource type="PackedScene" uid="uid://t3dleq7lhas5" path="res://characters/barbarian.tscn" id="4_vriy0"]
+[ext_resource type="PackedScene" uid="uid://cjcout23lvvfy" path="res://environment/treasure/coin.tscn" id="7_5fjk5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8rn1w"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_axfow"]
+sky_material = SubResource("ProceduralSkyMaterial_8rn1w")
+
+[sub_resource type="Environment" id="Environment_pmp10"]
+background_mode = 2
+sky = SubResource("Sky_axfow")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_hh3rp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pmp10")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="DungeonRoom1" parent="." instance=ExtResource("4_onb7s")]
+
+[node name="Knight" parent="." instance=ExtResource("3_c073w")]
+is_player = true
+speed = 8.0
+
+[node name="Barbarian" parent="." instance=ExtResource("4_vriy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83579, 0, -5.84939)
+
+[node name="Mage" parent="." instance=ExtResource("3_ywdm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74382, 0, 4.56428)
+
+[node name="TestToolsGUI" parent="." instance=ExtResource("4_2q8gk")]
+
+[node name="coin" parent="." instance=ExtResource("7_5fjk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[connection signal="barbarian_selected" from="TestToolsGUI" to="." method="_on_test_tools_gui_barbarian_selected"]
+[connection signal="knight_selected" from="TestToolsGUI" to="." method="_on_test_tools_gui_knight_selected"]
+[connection signal="mage_selected" from="TestToolsGUI" to="." method="_on_test_tools_gui_mage_selected"]

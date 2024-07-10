@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5r141fxs8nls"]
+
+[ext_resource type="PackedScene" uid="uid://f4x65e5y75xy" path="res://assets/art/dungeon/floor_tile_small_broken_A.gltf" id="1_yv72a"]
+
+[node name="floor_tile_small_broken_A2" instance=ExtResource("1_yv72a")]
+
+[node name="floor_tile_small_broken_A_col" parent="floor_tile_small_broken_A" index="0"]
+collision_layer = 5

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck4vsk4sdua3g"]
+
+[ext_resource type="PackedScene" uid="uid://bxvues38qlgkc" path="res://assets/art/dungeon/floor_tile_small_weeds_A.gltf" id="1_rocad"]
+
+[node name="floor_tile_small_weeds_A2" instance=ExtResource("1_rocad")]

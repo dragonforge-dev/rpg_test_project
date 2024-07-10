@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://brddl2cuk0kty"]
+
+[ext_resource type="Script" path="res://utilities/test_tools_gui.gd" id="1_f3g4t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvb3r"]
+bg_color = Color(0.672119, 0.00119051, 4.81307e-07, 1)
+
+[node name="TestToolsGUI" type="CanvasLayer"]
+script = ExtResource("1_f3g4t")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -105.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+
+[node name="Barbarian" type="Button" parent="MarginContainer/VBoxContainer" groups=["PlayerSelect"]]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hvb3r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hvb3r")
+toggle_mode = true
+text = "Barbarian"
+
+[node name="Knight" type="Button" parent="MarginContainer/VBoxContainer" groups=["PlayerSelect"]]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hvb3r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hvb3r")
+toggle_mode = true
+button_pressed = true
+text = "Knight"
+
+[node name="Mage" type="Button" parent="MarginContainer/VBoxContainer" groups=["PlayerSelect"]]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hvb3r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hvb3r")
+toggle_mode = true
+text = "Mage"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Barbarian" to="." method="_on_barbarian_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Knight" to="." method="_on_knight_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Mage" to="." method="_on_mage_toggled"]
