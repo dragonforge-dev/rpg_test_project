@@ -47,16 +47,6 @@ func _physics_process(delta):
 		if velocity.length() > 1.0:
 			model.rotation.y = lerp_angle(model.rotation.y, spring_arm.rotation.y, rotation_speed * delta)
 	
-	## Collision Detection for footstep sounds
-	#if is_player and velocity > Vector3.ZERO:
-		#for index in range(get_slide_collision_count()):
-			#var collision = get_slide_collision(index)
-			#if collision.get_collider() == null:
-				#continue
-			#
-			#if collision.get_collider().name.contains("tile"):
-				#$AnimationPlayer2.play("new_animation")
-
 
 func get_move_input(delta):
 	# Handle jump.
