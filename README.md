@@ -3,7 +3,7 @@ A Godot 3D RPG Test Project for learning and trying out new ideas.
 # File Organization #
 In the root folder we currently have the main scene and its atatched script.
 
-- ## Addons (Not for Export)##
+- ## Addons (Not for Export) ##
 All addons for the Godot Editor. Not for export.
 
 - ## Assets ##
