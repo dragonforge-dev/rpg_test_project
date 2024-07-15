@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var dodge_speed = 5.0
 @export var dodge_acceleration = 4.0
 
+@export var equipped_weapon: String
 @export var gold = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -103,12 +104,12 @@ func do_action(action):
 	match action:
 		"sheath_weapon":
 			if sheathed:
-				find_child("1H_Axe").show()
-				find_child("Sheath_1H_Axe").hide()
+				find_child(equipped_weapon).show()
+				find_child("Sheath_" + equipped_weapon).hide()
 				sheathed = false
 			else:
-				find_child("1H_Axe").hide()
-				find_child("Sheath_1H_Axe").show()
+				find_child(equipped_weapon).hide()
+				find_child("Sheath_" + equipped_weapon).show()
 				sheathed = true
 		_:
 			if action != null:
