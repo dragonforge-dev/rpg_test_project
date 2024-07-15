@@ -20,7 +20,10 @@ All visual art assets. (**NOTE:** These are all currently in the .gitignore.)
 - ### Sound ###
 All audio art assets.
 
-- #### sfx ####
+- #### Dialogue ####
+[Super Dialogue Audio Pack](https://dillonbecker.itch.io/sdap) by Dillon Becker under the [CCBY4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode) (No alterations were made.)
+
+- #### SFX ####
 Sound effects.
 - Environment
 - Pickup Sounds for Coins
