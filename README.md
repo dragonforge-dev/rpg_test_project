@@ -3,75 +3,68 @@ A Godot 3D RPG Test Project for learning and trying out new ideas.
 # File Organization #
 In the root folder we currently have the main scene and its atatched script.
 
-## Addons ##
+- ## Addons ##
 All addons for the Godot Editor. Not for export.
 
-## Assets ##
+- ## Assets ##
 All creative assets that are imported.
 
-### Art ###
+    - ### Art ###
 All visual art assets. (**NOTE:** These are all currently in the .gitignore.)
 
-#### Characters ####
-All Player character models.
+- Characters (All Player character models.)
+- Dungeon (All level-building dungeon assets.)
+- Items - (All individual item models.)
+- Monsters - (All monster assets (_currently empty_).)
 
-#### Dungeon ####
-All level-building dungeon assets.
-
-#### Items ####
-All individual item models.
-
-#### Monsters ####
-All monster assets (currently empty).
-
-### Sound ###
+- ### Sound ###
 All audio art assets.
 
-#### sfx ####
+- #### sfx ####
 Sound effects.
 - Environment
-    - Pickup Sounds for Coins
-    - Pickup Sounds for Metal Objects
+- Pickup Sounds for Coins
+- Pickup Sounds for Metal Objects
 
-## Environment ##
+- ## Environment ##
 All PackedScene objects and scripts that have been made for the environment. (Currently all dungeon assets.)
 
-### Floors ###
+- Floors
+- Loot (Objects that can be picked up by the player and added to inventory.)
+- Rooms (Rooms that can be combined together to make levels.)
+- Walls
 
-### Loot ###
-Objects that can be picked up by the player and added to inventory.
+- ## Mobs ##
+All mobile unites (Player Characters (PCs) Non-Player Characters (NPCS), and monsters/enemies.
 
-### Rooms ###
-Rooms that can be combined together to make levels.
-
-### Walls ###
-
-## Mobs ##
-
-### Characters ###
+- ### Characters ###
 All player character assets and scripts.
 
-#### Scripts ####
+- #### Scripts ####
+```
 actions.gd          - Handles most _unhandled_event events.
 animations.gd       - Handles all animations.
 player_character.gd - Main script for the player.
+```
 
-#### Scenes ####
+- #### Scenes ####
+```
 barbarian.tscn      - Barbarian Player Character.
 follow_camera.tscn  - A simple follow camera implemented and atatched to all the player models.
 knight.tscn         - Knight Player Character.
 mage.tscn           - Mage Player Character.
+```
 
-### Monsters ###
-Currently Empty
+- ### Monsters ###
+_Currently Empty_
 
-## Utilities ##
+- ## Utilities ##
 Currently all things that can be excluded from export (I believe.)
 
-### Editor ###
+- ### Editor ###
 Import scripts for floors, walls, and treasure.
 
-### Test ###
+- ### Test ###
 Tools for testing that I do not want players to have access to.
 
 # Assets #
