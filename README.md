@@ -3,7 +3,7 @@ A Godot 3D RPG Test Project for learning and trying out new ideas.
 # File Organization #
 In the root folder we currently have the main scene and its atatched script.
 
-- ## Addons ##
+- ## Addons (Not for Export)##
 All addons for the Godot Editor. Not for export.
 
 - ## Assets ##
@@ -58,7 +58,7 @@ mage.tscn           - Mage Player Character.
 - ### Monsters ###
 _Currently Empty_
 
-- ## Utilities ##
+- ## Utilities (Not for Export) ##
 Currently all things that can be excluded from export (I believe.)
 
 - ### Editor ###
