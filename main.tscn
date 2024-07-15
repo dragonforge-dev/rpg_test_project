@@ -43,9 +43,6 @@ speed = 8.0
 [node name="Barbarian" parent="." instance=ExtResource("4_vriy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83579, 0, -5.84939)
 
-[node name="Mage" parent="." instance=ExtResource("3_ywdm2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74382, 0, 4.56428)
-
 [node name="TestToolsGUI" parent="." instance=ExtResource("4_2q8gk")]
 
 [node name="coin" parent="." instance=ExtResource("7_5fjk5")]
@@ -56,6 +53,19 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.1
 
 [node name="loot_axe_2handed" parent="." instance=ExtResource("9_bvg58")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 5, 0.201203, 1)
+
+[node name="Mage" parent="." instance=ExtResource("3_ywdm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
+is_player = false
+equipped_weapon = ""
+gold = 0
+mouse_sensitivity = 0.0075
+speed = 5.0
+acceleration = 4.0
+jump_velocity = 8.0
+rotation_speed = 12.0
+dodge_speed = 5.0
+dodge_acceleration = 4.0
 
 [connection signal="barbarian_selected" from="TestToolsGUI" to="." method="_on_test_tools_gui_barbarian_selected"]
 [connection signal="knight_selected" from="TestToolsGUI" to="." method="_on_test_tools_gui_knight_selected"]

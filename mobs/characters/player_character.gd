@@ -1,17 +1,21 @@
 extends CharacterBody3D
 
 @export var is_player = false
+@export var loot: Array[PackedScene]
+@export var equipped_weapon: String
+@export var gold = 0
+
+@export var death_sounds: Array[AudioStream]
+
+@export_group("Physics")
 @export var mouse_sensitivity = 0.0075
 @export var speed = 5.0
 @export var acceleration = 4.0
 @export var jump_velocity = 8.0
 @export var rotation_speed = 12.0
-
 @export var dodge_speed = 5.0
 @export var dodge_acceleration = 4.0
 
-@export var equipped_weapon: String
-@export var gold = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -23,9 +27,9 @@ var sheathed = false
 @onready var spring_arm = $FollowCamera
 @onready var model = $Rig
 @onready var anim_tree = $AnimationTree
-@onready var anim_state = $AnimationTree.get("parameters/playback")
+#@onready var anim_state = $AnimationTree.get("parameters/playback")
 @onready var anim_player = $AnimationPlayer
-@onready var audio_stream_player = $AudioStreamPlayer3D
+#@onready var audio_stream_player = $AudioStreamPlayer3D
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -103,6 +107,8 @@ func _unhandled_input(event):
 func do_action(action):
 	match action:
 		"sheath_weapon":
+			if equipped_weapon.is_empty():
+				return
 			if sheathed:
 				find_child(equipped_weapon).show()
 				find_child("Sheath_" + equipped_weapon).hide()
@@ -125,28 +131,32 @@ func do_action(action):
 # Returns true if we are in the middle of a dodging animation.
 # Currently how we are tracking when the animation ends.
 func is_dodging():
-	return anim_state.get_current_node().contains("Dodge")
+	return Animations.is_doing("Dodge", anim_tree)
 
 
 # Returns true if we are in the middle of a attacking animation.
 # Currently how we are tracking when the animation ends.
 func is_attacking():
-	return anim_state.get_current_node().contains("Attack")
+	return Animations.is_doing("Attack", anim_tree)
 
 
+# Temporary method. There will be better ways to do this.
 func is_alive():
-	return !anim_state.get_current_node().contains("Death")
+	return !Animations.is_doing("Death", anim_tree)
 
 
 func die():
 	if is_alive():
-		anim_state.travel("Death_A")
+		play_sound_effect(death_sounds.pick_random())
+		Animations.do_animation("die", anim_tree)
 		drop_loot()
 	
 	
 func drop_loot():
-	var heldobject = load("res://environment/treasure/coin.tscn").instantiate()
-	add_child(heldobject)
+	if !loot.is_empty():
+		for heldobject in loot:
+			var droppeditem = heldobject.instantiate()
+			add_child(droppeditem)
 
 func _on_h_sword_body_entered(body):
 	body.die()
@@ -155,12 +165,17 @@ func _on_h_sword_body_entered(body):
 func pickup_item(item, amount, sound):
 	if item == null:
 		gold += amount
-		audio_stream_player.set_stream(sound)
-		audio_stream_player.play()
+		play_sound_effect(sound)
 		print(name + " Gold: ", gold)
 	else:
 		# TODO: Add item to inventory
 		# Play sound
+		play_sound_effect(sound)
+		print(name + " picked up " + item.name)
+
+
+func play_sound_effect(sound: AudioStream):
+		var audio_stream_player = AudioStreamPlayer.new()
+		add_child(audio_stream_player)
 		audio_stream_player.set_stream(sound)
 		audio_stream_player.play()
-		print(name + " picked up " + item.name)

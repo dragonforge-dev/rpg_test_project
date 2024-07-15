@@ -50,3 +50,9 @@ static func do_animation(action: String, anim_tree: AnimationTree):
 			anim_tree.set("parameters/conditions/grounded", true)
 			anim_tree.set("parameters/conditions/jumping", false)
 			return { "jumping": false }
+		"die":
+			anim_state.travel("Death_A")
+
+static func is_doing(animation: String, anim_tree: AnimationTree):
+	var anim_state = anim_tree.get("parameters/playback")
+	return anim_state.get_current_node().contains(animation)
