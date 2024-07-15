@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjcout23lvvfy"]
+
+[ext_resource type="PackedScene" uid="uid://bui4chrywxhar" path="res://assets/art/dungeon/coin.gltf" id="1_viu0j"]
+[ext_resource type="PackedScene" uid="uid://duwfwfdkcys7p" path="res://environment/loot/pickup_trigger.tscn" id="2_wh4ie"]
+[ext_resource type="AudioStream" uid="uid://cnjhxc7m1tqsp" path="res://assets/sound/sfx/environment/pickup_coins/coins_pickup_shake_01.wav" id="3_pb7qk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_owj5i"]
+height = 0.25
+radius = 0.25
+
+[node name="coin" instance=ExtResource("1_viu0j")]
+
+[node name="coin" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="PickupTrigger" parent="." index="1" instance=ExtResource("2_wh4ie")]
+sound_on_pickup = Array[AudioStream]([ExtResource("3_pb7qk")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CylinderShape3D_owj5i")

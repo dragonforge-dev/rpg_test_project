@@ -1,0 +1,24 @@
+[gd_scene load_steps=9 format=3 uid="uid://c58xwgklsrnho"]
+
+[ext_resource type="PackedScene" uid="uid://d0twxyo7gya0y" path="res://assets/art/items/axe_2handed.gltf" id="1_hpg78"]
+[ext_resource type="Script" path="res://environment/loot/pickup.gd" id="2_pv6c4"]
+[ext_resource type="AudioStream" uid="uid://dikbe014dq0c0" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_01.wav" id="3_6mhfq"]
+[ext_resource type="AudioStream" uid="uid://belg01xhd1ilx" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_02.wav" id="4_ov7np"]
+[ext_resource type="AudioStream" uid="uid://bm4lnderyeoiq" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_03.wav" id="5_h0hwa"]
+[ext_resource type="AudioStream" uid="uid://cveg6velj2tl2" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_04.wav" id="6_y650w"]
+[ext_resource type="PackedScene" uid="uid://duwfwfdkcys7p" path="res://environment/loot/pickup_trigger.tscn" id="7_duoq3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82vex"]
+size = Vector3(1.2858, 1.77527, 0.293213)
+
+[node name="LootAxe2Handed" instance=ExtResource("1_hpg78")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_pv6c4")
+sound_on_pickup = Array[AudioStream]([ExtResource("3_6mhfq"), ExtResource("4_ov7np"), ExtResource("5_h0hwa"), ExtResource("6_y650w")])
+
+[node name="PickupTrigger" parent="." index="1" instance=ExtResource("7_duoq3")]
+sound_on_pickup = Array[AudioStream]([ExtResource("3_6mhfq"), ExtResource("4_ov7np"), ExtResource("5_h0hwa"), ExtResource("6_y650w")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52588e-05, 0.43927, 0.00459689)
+shape = SubResource("BoxShape3D_82vex")

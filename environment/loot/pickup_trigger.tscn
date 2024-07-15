@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://duwfwfdkcys7p"]
+
+[ext_resource type="Script" path="res://environment/loot/pickup.gd" id="1_6h3bi"]
+
+[node name="PickupTrigger" type="Area3D"]
+collision_mask = 16
+script = ExtResource("1_6h3bi")
+
+[connection signal="body_entered" from="." to="." method="_on_pickup_trigger_body_entered"]

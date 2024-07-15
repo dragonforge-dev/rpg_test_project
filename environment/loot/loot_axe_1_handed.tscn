@@ -1,0 +1,21 @@
+[gd_scene load_steps=8 format=3 uid="uid://bktt06eo6b46b"]
+
+[ext_resource type="PackedScene" uid="uid://dmo5nc34n26bb" path="res://assets/art/items/axe_1handed.gltf" id="1_pyneu"]
+[ext_resource type="PackedScene" uid="uid://duwfwfdkcys7p" path="res://environment/loot/pickup_trigger.tscn" id="2_4frfr"]
+[ext_resource type="AudioStream" uid="uid://dikbe014dq0c0" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_01.wav" id="3_2tv78"]
+[ext_resource type="AudioStream" uid="uid://belg01xhd1ilx" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_02.wav" id="4_us2xr"]
+[ext_resource type="AudioStream" uid="uid://bm4lnderyeoiq" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_03.wav" id="5_ix6l6"]
+[ext_resource type="AudioStream" uid="uid://cveg6velj2tl2" path="res://assets/sound/sfx/environment/pickup_metal_loot/loot_metal_pickup_04.wav" id="6_voc13"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ctx4"]
+size = Vector3(0.7, 1.3, 0.3)
+
+[node name="LootAxe1Handed" instance=ExtResource("1_pyneu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="PickupTrigger" parent="." index="1" instance=ExtResource("2_4frfr")]
+sound_on_pickup = Array[AudioStream]([ExtResource("3_2tv78"), ExtResource("4_us2xr"), ExtResource("5_ix6l6"), ExtResource("6_voc13")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223167, 0.3535, -6.10352e-05)
+shape = SubResource("BoxShape3D_2ctx4")
