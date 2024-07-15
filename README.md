@@ -61,13 +61,15 @@ mage.tscn           - Mage Player Character.
 - ### Monsters ###
 _Currently Empty_
 
-- ## Utilities (Not for Export) ##
-Currently all things that can be excluded from export (I believe.)
+- ## Utilities ##
 
-- ### Editor ###
+- ### Editor (Not for Export) ###
 Import scripts for floors, walls, and treasure.
 
-- ### Test ###
+- ### Game ###
+aduio.gd is currently the only thing in here.
+
+- ### Test (Not for Export) ###
 Tools for testing that I do not want players to have access to.
 
 # Assets #

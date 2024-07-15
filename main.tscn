@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct520a3ngau6p"]
+[gd_scene load_steps=14 format=3 uid="uid://ct520a3ngau6p"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_hh3rp"]
 [ext_resource type="PackedScene" uid="uid://j1xlag31bgw6" path="res://mobs/characters/knight.tscn" id="3_c073w"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cjcout23lvvfy" path="res://environment/loot/loot_coin.tscn" id="7_5fjk5"]
 [ext_resource type="PackedScene" uid="uid://bktt06eo6b46b" path="res://environment/loot/loot_axe_1_handed.tscn" id="8_36b71"]
 [ext_resource type="PackedScene" uid="uid://c58xwgklsrnho" path="res://environment/loot/loot_axe_2_handed.tscn" id="9_bvg58"]
+[ext_resource type="PackedScene" uid="uid://bpg4yfpjmkr0n" path="res://mobs/monsters/skeleton_minion.tscn" id="10_gwcgr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8rn1w"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -51,21 +52,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 [node name="LootAxe1Handed" parent="." instance=ExtResource("8_36b71")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.199939, -1)
 
-[node name="loot_axe_2handed" parent="." instance=ExtResource("9_bvg58")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 5, 0.201203, 1)
-
 [node name="Mage" parent="." instance=ExtResource("3_ywdm2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
-is_player = false
-equipped_weapon = ""
-gold = 0
-mouse_sensitivity = 0.0075
-speed = 5.0
-acceleration = 4.0
-jump_velocity = 8.0
-rotation_speed = 12.0
-dodge_speed = 5.0
-dodge_acceleration = 4.0
+
+[node name="Skeleton_Minion2" parent="." instance=ExtResource("10_gwcgr")]
+
+[node name="LootAxe2Handed" parent="." instance=ExtResource("9_bvg58")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 5, 3, 2)
 
 [connection signal="barbarian_selected" from="TestToolsGUI" to="." method="_on_test_tools_gui_barbarian_selected"]
 [connection signal="knight_selected" from="TestToolsGUI" to="." method="_on_test_tools_gui_knight_selected"]

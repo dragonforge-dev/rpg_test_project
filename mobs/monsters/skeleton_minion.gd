@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-@export var is_player = false
 @export var loot: Array[PackedScene]
 @export var equipped_weapon: String
 @export var gold = 0
@@ -8,7 +7,6 @@ extends CharacterBody3D
 @export var death_sounds: Array[AudioStream]
 
 @export_group("Physics")
-@export var mouse_sensitivity = 0.0075
 @export var speed = 5.0
 @export var acceleration = 4.0
 @export var jump_velocity = 8.0
@@ -24,7 +22,6 @@ var grounded = true
 var blocking = false
 var sheathed = false
 
-@onready var spring_arm = $FollowCamera
 @onready var model = $Rig
 @onready var anim_tree = $AnimationTree
 
@@ -34,8 +31,8 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Get movement
-	if is_player:
-		get_move_input(delta)
+	# TODO: Add movement code here
+	get_move_input(delta)
 
 	# Apply Movement
 	#   The character can't move when blocking or attacking,
@@ -43,18 +40,12 @@ func _physics_process(delta):
 	if (!blocking and !is_attacking()) or is_dodging() or jumping:
 		move_and_slide()
 	
-	# Player Facing
-	if is_player:
-		##Line the player up with the camera
-		if velocity.length() > 1.0:
-			model.rotation.y = lerp_angle(model.rotation.y, spring_arm.rotation.y, rotation_speed * delta)
-	
 
-func get_move_input(delta):
+func get_move_input(_delta):
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
-		do_action("jump")
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#velocity.y = jump_velocity
+		#do_action("jump")
 		
 	# We just hit the floor after being in the air
 	if is_on_floor() and not grounded:
@@ -66,39 +57,30 @@ func get_move_input(delta):
 		do_action("fall")
 	
 	#Combination Attacks
-	if Input.is_action_pressed("attack") and Input.is_action_pressed("forward"):
-		do_action("attack_stab")
-	if Input.is_action_pressed("attack") and Input.is_action_pressed("back"):
-		do_action("attack_chop")
-	if Input.is_action_pressed("attack") and Input.is_action_pressed("left"):
-		do_action("attack_slice_horizontal")
-	if Input.is_action_pressed("attack") and Input.is_action_pressed("right"):
-		do_action("attack_slice_horizontal")
+	#if Input.is_action_pressed("attack") and Input.is_action_pressed("forward"):
+		#do_action("attack_stab")
+	#if Input.is_action_pressed("attack") and Input.is_action_pressed("back"):
+		#do_action("attack_chop")
+	#if Input.is_action_pressed("attack") and Input.is_action_pressed("left"):
+		#do_action("attack_slice_horizontal")
+	#if Input.is_action_pressed("attack") and Input.is_action_pressed("right"):
+		#do_action("attack_slice_horizontal")
 	
 	# Walking/Running
-	var input_dir = Input.get_vector("left", "right", "forward", "back")
-	var direction = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm.rotation.y)
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+	#var input_dir = Input.get_vector("left", "right", "forward", "back")
+	#Remove spring_arm
+	#var direction = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm.rotation.y)
+	#if direction:
+		#velocity.x = direction.x * speed
+		#velocity.z = direction.z * speed
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, speed)
+		#velocity.z = move_toward(velocity.z, 0, speed)
 
 	#Determine Walk/Run Animation
-	velocity = lerp(velocity, direction * speed, acceleration * delta)
-	var vl = velocity * model.transform.basis
-	anim_tree.set("parameters/IWR/blend_position", Vector2(vl.x, -vl.z) / speed)
-
-
-func _unhandled_input(event):
-	if is_player:
-		if event is InputEventMouseMotion:
-			spring_arm.rotation.x -= event.relative.y * mouse_sensitivity
-			spring_arm.rotation_degrees.x = clamp(spring_arm.rotation_degrees.x, -90.0, 30.0)
-			spring_arm.rotation.y -= event.relative.x * mouse_sensitivity
-		
-		do_action(Actions.get_action(event))
+	#velocity = lerp(velocity, direction * speed, acceleration * delta)
+	#var vl = velocity * model.transform.basis
+	#anim_tree.set("parameters/IWR/blend_position", Vector2(vl.x, -vl.z) / speed)
 
 
 func do_action(action):
@@ -153,22 +135,10 @@ func drop_loot():
 	if !loot.is_empty():
 		for heldobject in loot:
 			var droppeditem = heldobject.instantiate()
-			add_child(droppeditem)
+			get_parent_node_3d().add_child(droppeditem)
 
 func _on_h_sword_body_entered(body):
 	body.die()
-
-
-func pickup_item(item, amount, sound):
-	if item == null:
-		gold += amount
-		Sounds.play_sound_effect(sound)
-		print(name + " Gold: ", gold)
-	else:
-		# TODO: Add item to inventory
-		# Play sound
-		Sounds.play_sound_effect(sound)
-		print(name + " picked up " + item.name)
 
 
 
