@@ -78,7 +78,7 @@ Tools for testing that I do not want players to have access to.
 ### Environment ###
 [Dungeon Remastered](https://kaylousberg.itch.io/kaykit-dungeon-remastered) by [Kay Lousberg](https://kaylousberg.com/) ([Pateron](https://www.patreon.com/kaylousberg))
 
-# Sound #
-## Sound Effects ##
+## Sound ##
+### Sound Effects ###
 [Medieval Fantasy Game Sound Effects](https://magicsoundeffects.itch.io/medieval-fantasy-game-sound-effects) by [Magical Sound Effects](https://magicsoundeffects.itch.io/)
-## Music ##
+### Music ###
